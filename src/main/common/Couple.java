@@ -19,4 +19,16 @@ public class Couple implements Serializable {
         this.partener2=partener2;
         PC1=PC2=STARTING_POINTS;
     }
+    public int GetPCpartener1(){
+        return PC1;
+    }
+    public int GetPCpartener2(){
+        return PC2;
+    }
+    public void SetPCpartener1(int PC1){
+        this.PC1=PC1;
+    }
+    public void SetPCpartener2(int PC2){
+        this.PC2=PC2;
+    }
 }
