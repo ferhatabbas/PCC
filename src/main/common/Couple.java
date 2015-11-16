@@ -31,4 +31,21 @@ public class Couple implements Serializable {
     public void SetPCpartener2(int PC2){
         this.PC2=PC2;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Couple)) return false;
+
+        Couple couple = (Couple) o;
+
+        return (partener1.equals(couple.partener1) && partener2.equals(couple.partener2));
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (partener1.hashCode()+partener2.hashCode());
+    }
+
 }

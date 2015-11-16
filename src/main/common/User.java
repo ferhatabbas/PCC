@@ -8,10 +8,12 @@ import java.io.Serializable;
 public class User implements Serializable {
     private static final long serialVersionUID=1L;
 
-    String id;
-    String Nom;
-    String Prenom;
-    sexe Sexe;
+
+    private ActionReal actions;
+    private String id;
+    private String Nom;
+    private String Prenom;
+    private sexe Sexe;
 
     public enum sexe {Man, Woman}
 
@@ -21,4 +23,54 @@ public class User implements Serializable {
         Prenom = Prenom_c;
         Sexe = Sexe_c;
     }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return Nom;
+    }
+
+    public void setNom(String nom) {
+        Nom = nom;
+    }
+
+    public String getPrenom() {
+        return Prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        Prenom = prenom;
+    }
+
+    public sexe getSexe() {
+        return Sexe;
+    }
+
+    public void setSexe(sexe sexe) {
+        Sexe = sexe;
+    }
+    public boolean equals (Object o){
+        boolean result = false;
+        if(o instanceof User){
+            if(this.id == ((User) o).id) result=true;
+        }
+
+        return result;
+    }
+    public int hashCode(){
+    return id.hashCode();
+    }
+    public ActionReal getActions() {
+        return actions;
+    }
+
+    public void setActions(ActionReal actions) {
+        this.actions = actions;
+    }
+
 }
