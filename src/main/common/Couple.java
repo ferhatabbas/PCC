@@ -8,7 +8,6 @@ import java.io.Serializable;
 public class Couple implements Serializable {
     private static final long serialVersionUID=1L;
     private static final int STARTING_POINTS=100;
-
     private final User partener1;
     private final User partener2;
     private int PC1;
@@ -31,6 +30,15 @@ public class Couple implements Serializable {
     public void SetPCpartener2(int PC2){
         this.PC2=PC2;
     }
+
+    public User getPartener1() {
+        return partener1;
+    }
+
+    public User getPartener2() {
+        return partener2;
+    }
+
 
     @Override
     public boolean equals(Object o) {

@@ -9,17 +9,12 @@ public class Action {
     private String IDaction;
     private String Description;
     private int Valeur;
-    private Status status;
-    private Response reponse;
 
-    public enum Status { ATTENTE,VALIDER,REFUSER,RIEN }
-    public enum Response { YES, NO ,RIEN }
-    public Action(String ID,String descr,int val,Status stat,Response rep){
+
+    public Action(String ID,String descr,int val){
         this.IDaction=ID;
         this.Description=descr;
         this.Valeur=val;
-        this.status=stat;
-        reponse=rep;
     }
 
     public String getIDaction() {
@@ -46,21 +41,6 @@ public class Action {
         Valeur = valeur;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Response getReponse() {
-        return reponse;
-    }
-
-    public void setReponse(Response reponse) {
-        this.reponse = reponse;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
