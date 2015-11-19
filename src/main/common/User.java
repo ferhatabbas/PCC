@@ -9,11 +9,12 @@ public class User implements Serializable {
     private static final long serialVersionUID=1L;
 
 
-    private ActionReal actions;
+    //private ActionReal actions;
     private String id;
     private String Nom;
     private String Prenom;
     private sexe Sexe;
+    private String password;
 
     public enum sexe {Man, Woman}
 
@@ -50,6 +51,15 @@ public class User implements Serializable {
     public sexe getSexe() {
         return Sexe;
     }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
 
     public void setSexe(sexe sexe) {
         Sexe = sexe;
@@ -65,12 +75,12 @@ public class User implements Serializable {
     public int hashCode(){
     return id.hashCode();
     }
-    public ActionReal getActions() {
+   /* public ActionReal getActions() {
         return actions;
     }
 
     public void setActions(ActionReal actions) {
         this.actions = actions;
     }
-
+*/
 }
