@@ -1,4 +1,4 @@
-package main.server;
+package main.util;
 import sun.misc.BASE64Encoder;
 
 import java.io.UnsupportedEncodingException;

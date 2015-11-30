@@ -1,5 +1,7 @@
 package main.common;
 
+import main.util.*;
+
 import java.io.Serializable;
 
 /**
@@ -11,18 +13,24 @@ public class User implements Serializable {
 
     //private ActionReal actions;
     private String id;
-    private String Nom;
-    private String Prenom;
-    private sexe Sexe;
+    private String nom;
+    private String prenom;
+    private Utilitaires.sex sexe;
     private String password;
 
-    public enum sexe {Man, Woman}
 
-    public User(String Login_c, String Nom_c, String Prenom_c, sexe Sexe_c) {
-        id = Login_c;
-        Nom = Nom_c;
-        Prenom = Prenom_c;
-        Sexe = Sexe_c;
+
+    public User(String log, String nom, String prenom, Utilitaires.sex sexe,String password) {
+        this.id = log;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.sexe = sexe;
+        this.password=password;
+    }
+    public User(String log) {
+        this.id = log;
+        this.nom = " ";
+        this.prenom = " ";
     }
     public String getId() {
         return id;
@@ -33,23 +41,23 @@ public class User implements Serializable {
     }
 
     public String getNom() {
-        return Nom;
+        return nom;
     }
 
     public void setNom(String nom) {
-        Nom = nom;
+        nom = nom;
     }
 
     public String getPrenom() {
-        return Prenom;
+        return prenom;
     }
 
     public void setPrenom(String prenom) {
-        Prenom = prenom;
+        prenom = prenom;
     }
 
-    public sexe getSexe() {
-        return Sexe;
+    public Utilitaires.sex getSexe() {
+        return sexe;
     }
     public String getPassword() {
         return password;
@@ -61,9 +69,11 @@ public class User implements Serializable {
 
 
 
-    public void setSexe(sexe sexe) {
-        Sexe = sexe;
+    public void setSexe(Utilitaires.sex sexe) {
+        sexe = sexe;
     }
+
+
     public boolean equals (Object o){
         boolean result = false;
         if(o instanceof User){
@@ -75,12 +85,5 @@ public class User implements Serializable {
     public int hashCode(){
     return id.hashCode();
     }
-   /* public ActionReal getActions() {
-        return actions;
-    }
 
-    public void setActions(ActionReal actions) {
-        this.actions = actions;
-    }
-*/
 }

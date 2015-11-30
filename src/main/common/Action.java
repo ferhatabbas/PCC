@@ -6,39 +6,39 @@ package main.common;
 public class Action {
 
 
-    private String IDaction;
-    private String Description;
-    private int Valeur;
+    private String idaction;
+    private String description;
+    private int valeur;
 
 
     public Action(String ID,String descr,int val){
-        this.IDaction=ID;
-        this.Description=descr;
-        this.Valeur=val;
+        this.idaction=ID;
+        this.description=descr;
+        this.valeur=val;
     }
 
     public String getIDaction() {
-        return IDaction;
+        return idaction;
     }
 
     public void setIDaction(String IDaction) {
-        this.IDaction = IDaction;
+        this.idaction = IDaction;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        description = description;
     }
 
     public int getValeur() {
-        return Valeur;
+        return valeur;
     }
 
     public void setValeur(int valeur) {
-        Valeur = valeur;
+        valeur = valeur;
     }
 
     @Override
@@ -54,6 +54,6 @@ public class Action {
 
     @Override
     public int hashCode() {
-        return IDaction.hashCode();
+        return idaction.hashCode();
     }
 }

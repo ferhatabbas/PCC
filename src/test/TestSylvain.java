@@ -3,7 +3,7 @@ package test;
 
 import junit.framework.TestCase;
 import main.server.Database;
-import main.server.PasswordService;
+import main.util.PasswordService;
 
 /**
  * Created by ferhat on 2015-11-18.
