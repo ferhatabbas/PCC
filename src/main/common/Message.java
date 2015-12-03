@@ -11,6 +11,8 @@ public class Message implements Serializable {
   ////////// AJOUTEZ DES CONSTANTES DANS CET ENUM SELON VOS BESOINS //////////
   public enum Subject { STRING }
   
+  public Message() {}
+
   public Message(Subject subject, Object body) {
     this.subject = subject;
     this.body = body;
