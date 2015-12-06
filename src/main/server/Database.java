@@ -19,7 +19,7 @@ public class Database {
     private Map<Couple,Historique> historique;
     //private List<ActionReal> actionReal;
 
-    public Database() throws Exception {
+    public Database() {
         userlist=new ArrayList<User>();
         couplelist=new ArrayList<Couple>();
         actions=new ArrayList<Action>();
@@ -30,9 +30,14 @@ public class Database {
 
     }
 
-    public boolean connection(String ID,String Pass) throws Exception {
+    public boolean connection(String ID,String Pass) {
         boolean result = false;
-        String pass=encrypte(Pass);
+        String pass= null;
+        try {
+            pass = encrypte(Pass);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         for (User obj : userlist) {
             if ((obj.getId().hashCode() == ID.hashCode())) {
                 if (obj.getPassword().hashCode()==pass.hashCode()) {
@@ -81,7 +86,7 @@ public class Database {
     }
 
 
-    public void UpdateAR(String comment, Utilitaires.Response resp, String sender, String idAction){
+    public void UpdateAR(String comment, Utilitaires.Status stat, String sender, String idAction){
 
     }
     private int recupererActionid(String idaction){
@@ -133,10 +138,15 @@ public class Database {
     public User creeUser( String id,
             String nom,
             String prenom,
-            Utilitaires.sex sexe,
-            String password) throws Exception {
+            Utilitaires.Sex sexe,
+            String password){
         User user=null;
-        String passecrypt= encrypte(password);
+        String passecrypt= null;
+        try {
+            passecrypt = encrypte(password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         boolean trouve = false;
         for(User obj : userlist){
             if(obj.getId().hashCode()==id.hashCode())
@@ -170,11 +180,11 @@ public class Database {
             }
     }
 
-    private void setTestData() throws Exception {
+    private void setTestData(){
         Action action1= new Action("act1","fait le menage",10);
         Action action2= new Action("act2","oublie mon anniversaire",-10);
-        User user1 = creeUser("id1","firstName1","lastname1", Utilitaires.sex.Man,"hello");
-        User user2 = creeUser("id2","firstName2","lastname2", Utilitaires.sex.Woman,"bonjour");
+        User user1 = creeUser("id1","firstName1","lastname1", Utilitaires.Sex.MAN,"hello");
+        User user2 = creeUser("id2","firstName2","lastname2", Utilitaires.Sex.WOMAN,"bonjour");
         creeCouple(user1,user2);
         userlist.add(user1);
         userlist.add(user2);

@@ -6,9 +6,9 @@ package main.util;
  */
 public class Utilitaires {
 
-    public enum sex {Man, Woman}
+    public enum Sex {MAN, WOMAN}
     public enum Status { ATTENTE,VALIDER,REFUSER,RIEN }
-    public enum Response { YES, NO ,RIEN }
+
 
     public static String encrypte(String password) throws Exception {
         PasswordService ps = new PasswordService();

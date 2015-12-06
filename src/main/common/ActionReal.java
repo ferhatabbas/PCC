@@ -18,7 +18,6 @@ public class ActionReal {
     private Date date;
     private String Commentaire;
     private Utilitaires.Status status;
-    private Utilitaires.Response reponse;
 
     public ActionReal(Action action,User evaluateur,User evaluer ){
         this.evaluateur=evaluateur;
@@ -26,7 +25,6 @@ public class ActionReal {
         this.action=action;
         this.date=new Date();
         status= Utilitaires.Status.RIEN;
-        reponse= Utilitaires.Response.RIEN;
     }
     public User getEvaluateur() {
         return evaluateur;
@@ -74,14 +72,6 @@ public class ActionReal {
 
     public void setStatus(Utilitaires.Status status) {
         this.status = status;
-    }
-
-    public Utilitaires.Response getReponse() {
-        return reponse;
-    }
-
-    public void setReponse(Utilitaires.Response reponse) {
-        this.reponse = reponse;
     }
 
     @Override

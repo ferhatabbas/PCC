@@ -15,12 +15,12 @@ public class User implements Serializable {
     private String id;
     private String nom;
     private String prenom;
-    private Utilitaires.sex sexe;
+    private Utilitaires.Sex sexe;
     private String password;
 
 
 
-    public User(String log, String nom, String prenom, Utilitaires.sex sexe,String password) {
+    public User(String log, String nom, String prenom, Utilitaires.Sex sexe,String password) {
         this.id = log;
         this.nom = nom;
         this.prenom = prenom;
@@ -56,7 +56,7 @@ public class User implements Serializable {
         prenom = prenom;
     }
 
-    public Utilitaires.sex getSexe() {
+    public Utilitaires.Sex getSexe() {
         return sexe;
     }
     public String getPassword() {
@@ -69,7 +69,7 @@ public class User implements Serializable {
 
 
 
-    public void setSexe(Utilitaires.sex sexe) {
+    public void setSexe(Utilitaires.Sex sexe) {
         sexe = sexe;
     }
 
