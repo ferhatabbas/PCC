@@ -1,9 +1,9 @@
-package main.server;
+package server;
 
 import java.io.*;
 import java.net.*;
 
-import main.common.*;
+import common.*;
 
 public class TcpServer implements Runnable {
   private final RequestHandlerFactory requestHandlerFactory;

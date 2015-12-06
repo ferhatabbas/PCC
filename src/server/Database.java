@@ -1,13 +1,13 @@
-package main.server;
+package server;
 import jdk.nashorn.internal.runtime.ListAdapter;
-import main.common.*;
-import main.util.Utilitaires;
+import common.*;
+import util.Utilitaires;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static main.util.Utilitaires.encrypte;
+import static util.Utilitaires.encrypte;
 
 
 /**

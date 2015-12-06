@@ -1,4 +1,4 @@
-package main.common;
+package common;
 
 /**
  * Created by ferhat on 2015-11-12.

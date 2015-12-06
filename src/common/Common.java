@@ -1,4 +1,4 @@
-package main.common;
+package common;
 
 public class Common {
   public static final String SERVER_ADDRESS = "::1";

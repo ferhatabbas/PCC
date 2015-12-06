@@ -1,11 +1,11 @@
-package main.server;
+package server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import main.common.Message;
-import main.common.User;
+import common.Message;
+import common.User;
 
 import java.util.ArrayList;
 

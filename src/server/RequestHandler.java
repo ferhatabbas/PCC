@@ -1,6 +1,6 @@
-package main.server;
+package server;
 
-import main.common.*;
+import common.*;
 
 ////////// SYLVAIN, TU DOIS CODER LA LOGIQUE DU SERVEUR DANS UNE //////////
 ////////// CLASSE QUI IMPLEMENTE CETTE INTERFACE                 //////////

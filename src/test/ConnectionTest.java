@@ -2,9 +2,9 @@ package test;
 
 
 import junit.framework.TestCase;
-import main.common.User;
-import main.server.Database;
-import main.util.Utilitaires;
+import common.User;
+import server.Database;
+import util.Utilitaires;
 
 /**
  * Created by ferhat on 2015-11-18.

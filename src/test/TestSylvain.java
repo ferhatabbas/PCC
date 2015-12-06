@@ -2,10 +2,10 @@ package test;
 
 
 import junit.framework.TestCase;
-import main.common.Message;
-import main.server.Choregraph;
-import main.server.Database;
-import main.util.PasswordService;
+import common.Message;
+import server.Choregraph;
+import server.Database;
+import util.PasswordService;
 
 /**
  * Created by ferhat on 2015-11-18.

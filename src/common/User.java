@@ -1,6 +1,6 @@
-package main.common;
+package common;
 
-import main.util.*;
+import util.*;
 
 import java.io.Serializable;
 

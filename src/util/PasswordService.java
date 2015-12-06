@@ -1,4 +1,4 @@
-package main.util;
+package util;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 import sun.misc.BASE64Encoder;
 

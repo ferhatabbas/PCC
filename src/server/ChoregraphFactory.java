@@ -1,4 +1,4 @@
-package main.server;
+package server;
 
 /**
  * Created by Sylvain on 2015-12-05.

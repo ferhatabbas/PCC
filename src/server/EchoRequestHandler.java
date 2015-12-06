@@ -1,6 +1,6 @@
-package main.server;
+package server;
 
-import main.common.*;
+import common.*;
 
 public class EchoRequestHandler implements RequestHandler {
   
