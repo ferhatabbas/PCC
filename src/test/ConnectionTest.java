@@ -15,7 +15,7 @@ public class ConnectionTest extends TestCase {
     protected void setUp() throws Exception {
         super.setUp();
         data = new Database();
-        us= new User("id3","firstName1","lastname1", Utilitaires.sex.Man,"hello");
+        us= new User("id3","firstName1","lastname1", Utilitaires.Sex.MAN,"hello");
     }
 
     protected void tearDown() throws Exception {
