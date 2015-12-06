@@ -7,4 +7,5 @@ import main.common.*;
 public interface RequestHandler {
   
   public Message reply(Message request);
+
 }

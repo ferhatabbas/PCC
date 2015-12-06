@@ -2,6 +2,8 @@ package test;
 
 
 import junit.framework.TestCase;
+import main.common.Message;
+import main.server.Choregraph;
 import main.server.Database;
 import main.util.PasswordService;
 
@@ -12,19 +14,10 @@ public class TestSylvain extends TestCase {
 
 
     public void testpassword() throws  Exception{
-       PasswordService ps = new PasswordService();
-        
-        String essai = "toto";
-        essai = ps.encrypt(essai);
-        System.out.println(essai);
 
-        String essai2 = "toto";
-        essai2 = ps.encrypt(essai2);
-        System.out.println(essai2);
-        if(essai2.equals(essai))
-            System.out.println("TRUE");
-        else
-            System.out.println("FALSE");
+        Choregraph test = new Choregraph();
+
+      //  Message request = new Message(Message.Subject.CONNECT,);
 
 
     }

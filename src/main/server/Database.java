@@ -1,4 +1,5 @@
 package main.server;
+import jdk.nashorn.internal.runtime.ListAdapter;
 import main.common.*;
 import main.util.Utilitaires;
 
@@ -67,6 +68,8 @@ public class Database {
 
     }
 
+
+
     public List<ActionReal> actionRealiser(Couple couple, Date from, Date to) throws ParseException {
         // creation du calendrier pour l'incrementation de la date
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -111,6 +114,8 @@ public class Database {
         }
         return -1;
     }
+
+
 
     private int recupererCouple(Couple couple){
 
@@ -178,6 +183,10 @@ public class Database {
                 historique.put(couple,Historique.getIsntance());
                 return true;
             }
+    }
+
+    public List<Action> getActions(){
+        return this.actions;
     }
 
     private void setTestData(){
