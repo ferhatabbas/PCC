@@ -26,11 +26,8 @@ public class Choregraph implements RequestHandler {
                 try {
                     boolean success = Server.DATABASE.connection(requeteBody.get(0), requeteBody.get(1));
                     if(success){
-                        //recuperer instance du user
-
                         //Retourner instance du user
-
-                        reponse.setBody();
+                        reponse.setBody(Server.DATABASE.recupererUser(requeteBody.get(0)));
                     }
                     return  reponse;
                 }
@@ -39,8 +36,9 @@ public class Choregraph implements RequestHandler {
                 }
 
             case ACTIONS:
-                Server.DATABASE.
-                return null;
+                reponse.setSubject(Message.Subject.ACTIONS);
+                reponse.setBody(Server.DATABASE.getActions());
+                return reponse;
 
             case CREATE:
 
