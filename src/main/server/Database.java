@@ -52,8 +52,8 @@ public class Database {
 
     public void createAR(String sender, String receiver, String idaction){
         // recuperer la position de chaque user ( le sender et le receiver) et recuperer l<action dans les listes de donnees
-        int senderUser= recupererUserid(sender);
-        int receiverUser= recupererUserid(receiver);
+        int senderUser= userlist.indexOf(sender);
+        int receiverUser= userlist.indexOf(receiver);
         int posAction= recupererActionid(idaction);
 
         int pos=0;
@@ -103,16 +103,16 @@ public class Database {
         }
         return -1;
     }
-    private int recupererUserid(String prenom){
+    public User recupererUser(String id){
 
         int i=0;
         while (i != userlist.size()){
-            if (userlist.get(i).getNom().equals(prenom)){
-                return i;
+            if (userlist.get(i).getId().equals(id)){
+                return userlist.get(i);
             }
             i++;
         }
-        return -1;
+        return null;
     }
 
 
