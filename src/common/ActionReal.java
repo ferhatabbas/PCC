@@ -11,20 +11,20 @@ import java.util.HashMap;
  */
 
 public class ActionReal {
-
+    public enum Status { ATTENTE,VALIDER,REFUSER,RIEN }
     private User evaluateur;
     private User evaluer;
     private Action action;
     private Date date;
     private String Commentaire;
-    private Utilitaires.Status status;
+    private Status status;
 
     public ActionReal(Action action,User evaluateur,User evaluer ){
         this.evaluateur=evaluateur;
         this.evaluer=evaluer;
         this.action=action;
         this.date=new Date();
-        status= Utilitaires.Status.RIEN;
+        status= Status.RIEN;
     }
     public User getEvaluateur() {
         return evaluateur;
@@ -66,11 +66,11 @@ public class ActionReal {
         Commentaire = commentaire;
     }
 
-    public Utilitaires.Status getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Utilitaires.Status status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

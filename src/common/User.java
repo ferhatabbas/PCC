@@ -9,18 +9,18 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     private static final long serialVersionUID=1L;
-
+    public enum Sex {MAN, WOMAN}
 
     //private ActionReal actions;
     private String id;
     private String nom;
     private String prenom;
-    private Utilitaires.Sex sexe;
+    private Sex sexe;
     private String password;
 
 
 
-    public User(String log, String nom, String prenom, Utilitaires.Sex sexe,String password) {
+    public User(String log, String nom, String prenom, Sex sexe,String password) {
         this.id = log;
         this.nom = nom;
         this.prenom = prenom;
@@ -56,7 +56,7 @@ public class User implements Serializable {
         prenom = prenom;
     }
 
-    public Utilitaires.Sex getSexe() {
+    public Sex getSexe() {
         return sexe;
     }
     public String getPassword() {
@@ -69,7 +69,7 @@ public class User implements Serializable {
 
 
 
-    public void setSexe(Utilitaires.Sex sexe) {
+    public void setSexe(Sex sexe) {
         sexe = sexe;
     }
 
