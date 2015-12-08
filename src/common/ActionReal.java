@@ -19,12 +19,21 @@ public class ActionReal {
     private String Commentaire;
     private Status status;
 
+    // For internal use only. This id is convenient for the equals() and
+    // the hashCode() implementation.
+    private final String id;
+
     public ActionReal(Action action,User evaluateur,User evaluer ){
         this.evaluateur=evaluateur;
         this.evaluer=evaluer;
         this.action=action;
         this.date=new Date();
-        status= Status.RIEN;
+        status= Status.ATTENTE;
+
+        // The id is set to concatenation of the performer user id and the date time
+        // in milliseconds. This value must be unique inside all the distributed
+        // system.
+        id = evaluer.getId() + date.getTime();
     }
     public User getEvaluateur() {
         return evaluateur;

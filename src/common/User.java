@@ -18,8 +18,6 @@ public class User implements Serializable {
     private Sex sexe;
     private String password;
 
-
-
     public User(String log, String nom, String prenom, Sex sexe,String password) {
         this.id = log;
         this.nom = nom;
