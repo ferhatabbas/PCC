@@ -11,29 +11,29 @@ import java.util.HashMap;
  */
 
 public class ActionReal {
-    public enum Status { ATTENTE,VALIDER,REFUSER,RIEN }
+    public enum Status { ATTENTE,VALIDER,REFUSER }
     private User evaluateur;
-    private User evaluer;
+    private Couple evaluer;
     private Action action;
     private Date date;
-    private String Commentaire;
+    private String commentaire;
     private Status status;
 
     // For internal use only. This id is convenient for the equals() and
     // the hashCode() implementation.
     private final String id;
 
-    public ActionReal(Action action,User evaluateur,User evaluer ){
+    public ActionReal(Action action,Couple couple,User evaluateur ){
         this.evaluateur=evaluateur;
-        this.evaluer=evaluer;
+        this.evaluer=couple;
         this.action=action;
         this.date=new Date();
         status= Status.ATTENTE;
-
+        commentaire= "";
         // The id is set to concatenation of the performer user id and the date time
         // in milliseconds. This value must be unique inside all the distributed
         // system.
-        id = evaluer.getId() + date.getTime();
+        id = evaluateur.getId() + date.getTime();
     }
     public User getEvaluateur() {
         return evaluateur;
@@ -43,11 +43,11 @@ public class ActionReal {
         this.evaluateur = evaluateur;
     }
 
-    public User getEvaluer() {
+    public Couple getEvaluer() {
         return evaluer;
     }
 
-    public void setEvaluer(User evaluer) {
+    public void setEvaluer(Couple evaluer) {
         this.evaluer = evaluer;
     }
 
@@ -68,11 +68,11 @@ public class ActionReal {
     }
 
     public String getCommentaire() {
-        return Commentaire;
+        return commentaire;
     }
 
     public void setCommentaire(String commentaire) {
-        Commentaire = commentaire;
+        commentaire = commentaire;
     }
 
     public Status getStatus() {
@@ -88,19 +88,14 @@ public class ActionReal {
         if (this == o) return true;
         if (!(o instanceof ActionReal)) return false;
 
-        ActionReal that = (ActionReal) o;
-
-        if (getEvaluateur() != null ? !getEvaluateur().equals(that.getEvaluateur()) : that.getEvaluateur() != null)
-            return false;
-        return !(getEvaluer() != null ? !getEvaluer().equals(that.getEvaluer()) : that.getEvaluer() != null);
+        ActionReal actionReal = (ActionReal) o;
+        return actionReal.id.equals(this.id);
 
     }
 
     @Override
     public int hashCode() {
-        int result = getEvaluateur() != null ? getEvaluateur().hashCode() : 0;
-        result = 31 * result + (getEvaluer() != null ? getEvaluer().hashCode() : 0);
-        return result;
+        return id.hashCode();
     }
 
 

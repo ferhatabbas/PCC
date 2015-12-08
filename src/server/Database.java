@@ -55,12 +55,12 @@ public class Database {
         int senderUser= userlist.indexOf(sender);
         int receiverUser= userlist.indexOf(receiver);
         int posAction= recupererActionid(idaction);
+        Couple couple= new Couple(userlist.get(senderUser),userlist.get(receiverUser));
 
         int pos=0;
         // cree l'action a realiser
-        ActionReal act = new ActionReal(actions.get(posAction),userlist.get(senderUser),userlist.get(receiverUser));
-        // trouver le couple des deux users puis leur associer l<action
-        Couple couple= new Couple(userlist.get(senderUser),userlist.get(receiverUser));
+        ActionReal act = new ActionReal(actions.get(posAction),couple,userlist.get(senderUser));
+        // trouver le couple des deux users puis leur associer l'action
         while(!couplelist.get(pos).equals(couple)) pos++;
         historique.get(couplelist.get(pos)).setAction(act);
 
@@ -116,30 +116,6 @@ public class Database {
     }
 
 
-
-    private int recupererCouple(Couple couple){
-
-        int i=0;
-        while (i != couplelist.size()){
-            if (couplelist.get(i).equals(couple)){
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
-    private int recupererUser(User user){
-
-        int i=0;
-        while (i != userlist.size()){
-            if (userlist.get(i).equals(user)){
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
-
     public User creeUser( String id,
             String nom,
             String prenom,
@@ -185,6 +161,29 @@ public class Database {
             }
     }
 
+
+    private int recupererCouple(Couple couple){
+
+        int i=0;
+        while (i != couplelist.size()){
+            if (couplelist.get(i).equals(couple)){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+    private int recupererUser(User user){
+
+        int i=0;
+        while (i != userlist.size()){
+            if (userlist.get(i).equals(user)){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
     public List<Action> getActions(){
         return this.actions;
     }
