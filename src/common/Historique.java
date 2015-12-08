@@ -23,7 +23,7 @@ public class Historique  {
         return instance;
     }
     public void setAction(ActionReal act){
-        act.setStatus(Utilitaires.Status.ATTENTE);
+        act.setStatus(ActionReal.Status.ATTENTE);
         actionsReal.add(act);
     }
     public ActionReal recupAction(Date date){

@@ -89,7 +89,7 @@ public class Database {
     }
 
 
-    public void UpdateAR(String comment, Utilitaires.Status stat, String sender, String idAction){
+    public void UpdateAR(String comment, ActionReal.Status stat, String sender, String idAction){
 
     }
     private int recupererActionid(String idaction){
@@ -143,7 +143,7 @@ public class Database {
     public User creeUser( String id,
             String nom,
             String prenom,
-            Utilitaires.Sex sexe,
+            User.Sex sexe,
             String password){
         User user=null;
         String passecrypt= null;
@@ -192,8 +192,8 @@ public class Database {
     private void setTestData(){
         Action action1= new Action("act1","fait le menage",10);
         Action action2= new Action("act2","oublie mon anniversaire",-10);
-        User user1 = creeUser("id1","firstName1","lastname1", Utilitaires.Sex.MAN,"hello");
-        User user2 = creeUser("id2","firstName2","lastname2", Utilitaires.Sex.WOMAN,"bonjour");
+        User user1 = creeUser("id1","firstName1","lastname1", User.Sex.MAN,"hello");
+        User user2 = creeUser("id2","firstName2","lastname2", User.Sex.WOMAN,"bonjour");
         creeCouple(user1,user2);
         userlist.add(user1);
         userlist.add(user2);
