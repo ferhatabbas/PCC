@@ -36,7 +36,7 @@ public class Choregraph implements RequestHandler {
                 reponse.setBody(Server.DATABASE.getActions());
                 return reponse;
 
-            case CREATE:
+            //case CREATE:
 
 
         }
