@@ -1,3 +1,4 @@
-# Excludes everything except 'src' directory
+# Excludes everything except the 'src' and 'lib' directory
 /*
 !/src/
+!/lib/
