@@ -6,11 +6,13 @@ public class Server {
   private static final int NB_THREADS = 100;
   public static final ScheduledExecutorService EXECUTOR = Executors.newScheduledThreadPool(NB_THREADS);
   public static final Database DATABASE = new Database();
+  public static final RestfulClient RESTFUL_CLIENT = new RestfulClient();
   
   public static void main(String[] args) throws Exception {
     //EXECUTOR.execute(new TcpServer(new EchoRequestHandlerFactory()));
     EXECUTOR.execute(new TcpServer(new ChoregraphFactory()));
     testPeriodicTask();
+    testRestfulClient();
   }
   
   private static void testPeriodicTask() {
@@ -21,5 +23,14 @@ public class Server {
       }
     };
     EXECUTOR.scheduleAtFixedRate(task, delay, delay, TimeUnit.MILLISECONDS);
+  }
+
+  private static void testRestfulClient() {
+    Runnable task = new Runnable() {
+      public void run() {
+        RESTFUL_CLIENT.test();
+      }
+    };
+    EXECUTOR.execute(task);
   }
 }
