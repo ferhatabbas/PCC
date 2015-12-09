@@ -1,59 +1,77 @@
 package common;
 
-/**
- * Created by ferhat on 2015-11-12.
- */
-public class Action {
+import java.io.*;
 
+import org.json.*;
 
-    private String idaction;
-    private String description;
-    private int valeur;
-
-
-    public Action(String ID,String descr,int val){
-        this.idaction=ID;
-        this.description=descr;
-        this.valeur=val;
+public class Action implements Cloneable, Serializable {
+  private static final long serialVersionUID = 1L;
+  
+  private final String id;
+  private String description;
+  private int value;
+  
+  public Action(String id, String description, int value) {
+    this.id = id;
+    this.description = description;
+    this.value = value;
+  }
+  
+  public Action(JSONObject jsonObject) {
+    id = (String) jsonObject.get("id");
+    description = (String) jsonObject.get("description");
+    value = (int) jsonObject.get("value");
+  }
+  
+  public String getId() {
+    return id;
+  }
+  
+  public String getDescription() {
+    return description;
+  }
+  
+  public int getValue() {
+    return value;
+  }
+  
+  @Override
+  public String toString() {
+    String string = "";
+    
+    string += "         id: " + id + "\n";
+    string += "description: " + description + "\n";
+    string += "      value: " + value;
+    
+    return string;
+  }
+  
+  @Override
+  public boolean equals(Object object) {
+    if (object == this) {
+      return true;
     }
-
-    public String getIDaction() {
-        return idaction;
+    
+    if (!(object instanceof Action)) {
+      return false;
     }
-
-    public void setIDaction(String IDaction) {
-        this.idaction = IDaction;
+    
+    Action action = (Action) object;
+    return action.id.equals(id);
+  }
+  
+  @Override
+  public int hashCode() {
+    return id.hashCode();
+  }
+  
+  @Override
+  public Action clone() {
+    try {
+      return (Action) super.clone();
     }
-
-    public String getDescription() {
-        return description;
+    catch (CloneNotSupportedException e) {
+      throw new AssertionError();
     }
-
-    public void setDescription(String description) {
-        description = description;
-    }
-
-    public int getValeur() {
-        return valeur;
-    }
-
-    public void setValeur(int valeur) {
-        valeur = valeur;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Action)) return false;
-
-        Action action = (Action) o;
-
-        return !(getIDaction() != null ? !getIDaction().equals(action.getIDaction()) : action.getIDaction() != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        return idaction.hashCode();
-    }
+  }
 }

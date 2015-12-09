@@ -96,7 +96,7 @@ public class Database {
 
         int i=0;
         while (i != actions.size()){
-            if (actions.get(i).getIDaction().equals(idaction)){
+            if (actions.get(i).getId().equals(idaction)){
                 return i;
             }
             i++;
