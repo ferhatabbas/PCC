@@ -1,9 +1,10 @@
 package server;
 
+import com.sun.xml.bind.v2.TODO;
 import common.Message;
-import common.User;
 
 import java.util.ArrayList;
+
 
 /**
  * Created by Sylvain on 2015-12-05.
@@ -12,7 +13,7 @@ public class Choregraph implements RequestHandler {
     @Override
     public Message reply(Message request) {
         Message reponse = new Message();
-
+        TransactionTOU Tou = new TransactionTOU();
         switch (request.getSubject()){
             case CONNECT:
                 reponse.setSubject(Message.Subject.CONNECT);
@@ -38,11 +39,27 @@ public class Choregraph implements RequestHandler {
 
             //case CREATE:
 
+            case TOU_REQUEST:
+               int step = (int) request.getBody();
+                return Tou.run(step);
+
+            case TOU_HEY:
+                if(Tou.hey()) //il y a une nouveaute
+                return Tou.run();
+                else
+                    return new Message(Message.Subject.TOU_NOTHING);
+
+            case TOU_MYPOSITION:
+                ArrayList latlng = (ArrayList) request.getBody();
+              // TODO Sauvegarder ca et le mettre dans le couple ? User ? il faut que le partenaire puisse recuperer cette position
+                return Tou.run();
+
 
         }
 
         return  null;
     }
+
 
 
 }

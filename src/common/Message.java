@@ -9,9 +9,15 @@ public class Message implements Serializable {
   private Object body;
   
   ////////// AJOUTEZ DES CONSTANTES DANS CET ENUM SELON VOS BESOINS //////////
-  public enum Subject { CONNECT, HISTORIQUE, ACTIONS ,ADD_AR, UPDATE_AR , ADD_COUPLE}
+  public enum Subject { CONNECT, HISTORIQUE, ACTIONS ,ADD_AR, UPDATE_AR , ADD_COUPLE,TOU_REQUEST,
+    TOU_ACK,TOU_NOTHING,TOU_HEY,TOU_MYPOSITION,TOU_POSITION,TOU_END}
   
   public Message() {}
+
+  public Message(Subject subject){
+    this.subject=subject;
+    this.body=null;
+  }
 
   public Message(Subject subject, Object body) {
     this.subject = subject;
