@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class ActionReal {
     public enum Status { ATTENTE,VALIDER,REFUSER }
     private User evaluateur;
-    private Couple evaluer;
+    private User evaluer;
     private Action action;
     private Date date;
     private String commentaire;
@@ -23,9 +23,9 @@ public class ActionReal {
     // the hashCode() implementation.
     private final String id;
 
-    public ActionReal(Action action,Couple couple,User evaluateur ){
+    public ActionReal(Action action,User evaluateur ,User evaluer ){
         this.evaluateur=evaluateur;
-        this.evaluer=couple;
+        this.evaluer=evaluer;
         this.action=action;
         this.date=new Date();
         status= Status.ATTENTE;
@@ -43,11 +43,11 @@ public class ActionReal {
         this.evaluateur = evaluateur;
     }
 
-    public Couple getEvaluer() {
+    public User getEvaluer() {
         return evaluer;
     }
 
-    public void setEvaluer(Couple evaluer) {
+    public void setEvaluer(User evaluer) {
         this.evaluer = evaluer;
     }
 
