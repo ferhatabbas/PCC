@@ -158,17 +158,6 @@ public class Database {
         }
         return -1;
     }
-    public int recupererUser(User user){
-
-        int i=0;
-        while (i != userlist.size()){
-            if (userlist.get(i).equals(user)){
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
     
     public Couple recupererCouple(User user){
 
@@ -239,7 +228,15 @@ public class Database {
             }
     }
 
-
+    public List<String> getActionDescList(){
+        List<String> actionsDesc = new ArrayList<String>();
+        int i=0;
+        while (i != actions.size()){
+            actionsDesc.add(actions.get(i).getDescription());
+            i++;
+        }
+        return actionsDesc;
+    }
     private int recupererCouple(Couple couple){
 
         int i=0;
@@ -272,7 +269,7 @@ public class Database {
     }
     
     private void setTestData(){
-        Action action1= new Action("act1","fait le menage",10);
+        Action action1= new Action("act1","fait le menage", 10);
         Action action2= new Action("act2","oublie mon anniversaire",-10);
         User user1 = creeUser("id1","firstName1","lastname1", User.Sex.MAN,"hello");
         User user2 = creeUser("id2","firstName2","lastname2", User.Sex.WOMAN,"bonjour");
