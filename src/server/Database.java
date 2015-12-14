@@ -218,8 +218,15 @@ public class Database {
         }
         return -1;
     }
-
-
+    
+    public List<String> getUserIds() {
+      List<String> userIds = new ArrayList<String>();
+      for (User user : userlist) {
+        userIds.add(user.getId());
+      }
+      return userIds;
+    }
+    
     private void setTestData(){
         Action action1= new Action("act1","fait le menage",10);
         Action action2= new Action("act2","oublie mon anniversaire",-10);

@@ -14,6 +14,13 @@ public class Choregraph implements RequestHandler {
         Message reponse = new Message();
 
         switch (request.getSubject()){
+            case SYNC:
+                return Server.MESSAGE_SERVICE.receive((String) request.getBody());
+
+            case P2P:
+                Server.MESSAGE_SERVICE.send(request.getTo(), request);
+                return new Message();
+
             case CONNECT:
                 reponse.setSubject(Message.Subject.CONNECT);
 
