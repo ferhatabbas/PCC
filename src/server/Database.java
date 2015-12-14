@@ -1,8 +1,6 @@
 package server;
 import jdk.nashorn.internal.runtime.ListAdapter;
 import common.*;
-import util.Utilitaires;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -25,12 +23,24 @@ public class Database {
         couplelist=new ArrayList<Couple>();
         actions=new ArrayList<Action>();
         historique= new HashMap<Couple,Historique>();
-
+        // just pour faire des test
+        addUserDumby();
         setTestData();
 
 
     }
-
+    public void addUserDumby() {
+        User user1 = new User("fafa", "fafa", null, null, "fafa");
+        User user2 = new User("fifi", "fifi", null, null, "fifi");
+        User user3 = new User("toto", "toto", null, null, "toto");
+        User user4 = new User("lolo", "lolo", null, null, "lolo");
+        this.userlist.add(user1);
+        this.userlist.add(user2);
+        this.userlist.add(user3);
+        this.userlist.add(user4);
+        this.couplelist.add(new Couple(user1,user2));
+        this.couplelist.add(new Couple(user3,user4));
+    }
     public boolean connection(String ID,String Pass) {
         boolean result = false;
         String pass= null;
@@ -57,21 +67,20 @@ public class Database {
 
 
     public void addActionReal(String sender, String receiver, String idaction){
-        // recuperer la position de chaque user ( le sender et le receiver) et recuperer l<action dans les listes de donnees
-        int senderUser= userlist.indexOf(sender);
-        int receiverUser= userlist.indexOf(receiver);
+        User senderUser= recupererUser(sender);
+        User receiverUser= recupererUser(receiver);
         int posAction= recupererActionid(idaction);
-        Couple couple= new Couple(userlist.get(senderUser),userlist.get(receiverUser));
-
+        Couple couple= recupererCouple(senderUser);
         int pos=0;
         // cree l'action a realiser
-        ActionReal act = new ActionReal(actions.get(posAction),userlist.get(senderUser),userlist.get(receiverUser));
+        ActionReal act = new ActionReal(actions.get(posAction),senderUser,receiverUser);
         // trouver le couple des deux users puis leur associer l'action
-        while(!couplelist.get(pos).equals(couple)) pos++;
-        historique.get(couplelist.get(pos)).setAction(act);
-
-
-
+        if(historique.containsKey(couple)){
+            historique.get(couple).setAction(act);
+        }
+        else{
+            historique.put(couple,new Historique(act));
+        }
     }
 
 
@@ -126,6 +135,18 @@ public class Database {
 
 
     }
+    public String recupererIdAction(String actionDesc){
+
+        int i=0;
+        while (i != actions.size()){
+            if (actions.get(i).getDescription().equals(actionDesc)){
+                return actions.get(i).getId();
+            }
+            i++;
+        }
+        return null;
+    }
+    
     private int recupererActionid(String idaction){
 
         int i=0;
@@ -137,19 +158,42 @@ public class Database {
         }
         return -1;
     }
-    public User recupererUser(String id){
+    public int recupererUser(User user){
 
         int i=0;
         while (i != userlist.size()){
-            if (userlist.get(i).getId().equals(id)){
-                return userlist.get(i);
+            if (userlist.get(i).equals(user)){
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+    
+    public Couple recupererCouple(User user){
+
+        int i=0;
+        while (i != couplelist.size()){
+            if (couplelist.get(i).getPartener1().equals(user) || couplelist.get(i).getPartener2().equals(user)){
+                return couplelist.get(i);
             }
             i++;
         }
         return null;
     }
 
+    public User recupererUser(String user){
 
+        int i=0;
+        while (i != userlist.size()){
+            if (userlist.get(i).getId().equals(user)){
+                return userlist.get(i) ;
+            }
+            i++;
+        }
+        return null;
+    }
+    
     public User creeUser( String id,
             String nom,
             String prenom,
