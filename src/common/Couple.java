@@ -25,10 +25,10 @@ public class Couple implements Serializable {
         return PC2;
     }
     public void SetPCpartener1(int PC1){
-        this.PC1=PC1;
+        this.PC1=PC1+this.PC1;
     }
     public void SetPCpartener2(int PC2){
-        this.PC2=PC2;
+        this.PC2=PC2+this.PC2;
     }
 
     public User getPartener1() {

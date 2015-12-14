@@ -35,5 +35,6 @@ public class Historique  {
         }
         return null;
     }
+    public List<ActionReal> getActionsReal(){return actionsReal;}
 
 }

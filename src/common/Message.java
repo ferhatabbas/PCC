@@ -6,26 +6,44 @@ public class Message implements Serializable {
   private static final long serialVersionUID = 1L;
   
   private Subject subject;
+  private String to;
+  private String from;
   private Object body;
   
   ////////// AJOUTEZ DES CONSTANTES DANS CET ENUM SELON VOS BESOINS //////////
-  public enum Subject { CONNECT, HISTORIQUE, ACTIONS ,ADD_AR, UPDATE_AR , ADD_COUPLE,TOU_REQUEST,
+  public enum Subject { SYNC, NULL, P2P, CONNECT, HISTORIQUE, ACTIONS ,ADD_AR, UPDATE_AR , ADD_COUPLE,TOU_REQUEST,
     TOU_ACK,TOU_NOTHING,TOU_HEY,TOU_MYPOSITION,TOU_POSITION,TOU_END}
   
-  public Message() {}
-
-  public Message(Subject subject){
-    this.subject=subject;
-    this.body=null;
+  public Message() {
+    subject = Subject.NULL;
   }
-
+  
+  public Message(Subject subject) {
+    this.subject = subject;
+  }
+  
   public Message(Subject subject, Object body) {
     this.subject = subject;
     this.body = body;
   }
   
+  public Message(Subject subject, String to, String from, Object body) {
+    this.subject = subject;
+    this.to = to;
+    this.from = from;
+    this.body = body;
+  }
+  
   public Subject getSubject() {
     return subject;
+  }
+  
+  public String getTo() {
+    return to;
+  }
+  
+  public String getFrom() {
+    return from;
   }
   
   public Object getBody() {
@@ -34,6 +52,14 @@ public class Message implements Serializable {
   
   public void setSubject(Subject subject) {
     this.subject = subject;
+  }
+  
+  public void setTo(String to) {
+    this.to = to;
+  }
+  
+  public void setFrom(String from) {
+    this.from = from;
   }
   
   public void setBody(Object body) {
