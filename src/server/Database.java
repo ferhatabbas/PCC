@@ -43,18 +43,10 @@ public class Database {
     }
     public boolean connection(String ID,String Pass) {
         boolean result = false;
-        String pass= null;
-        try {
-            pass = encrypte(Pass);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         for (User obj : userlist) {
-            if ((obj.getId().hashCode() == ID.hashCode())) {
-                if (obj.getPassword().hashCode()==pass.hashCode()) {
-                    result = true;
-                    break;
-                }
+            if (obj.getId().equals(ID) && obj.getPassword().equals(Pass)) {
+                result = true;
+                break;
             }
         }
         return result;

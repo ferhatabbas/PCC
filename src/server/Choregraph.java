@@ -54,10 +54,11 @@ public class Choregraph implements RequestHandler {
             //break;
 
             case ADD_AR:
-                reponse.setSubject(Message.Subject.CONNECT);
+                reponse.setSubject(Message.Subject.ADD_AR);
                 requeteBody = (ArrayList<String>) request.getBody();
                 try {
                     Server.DATABASE.addActionReal(requeteBody.get(0), requeteBody.get(1), Server.DATABASE.recupererIdAction(requeteBody.get(2)));
+                    return reponse;
                 }
                 catch  (Exception e){
                     System.out.println("Connection impossible");
