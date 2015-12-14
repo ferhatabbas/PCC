@@ -1,7 +1,5 @@
 package common;
 
-import util.*;
-
 import java.io.Serializable;
 
 /**

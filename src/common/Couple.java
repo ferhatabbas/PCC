@@ -56,4 +56,15 @@ public class Couple implements Serializable {
         return (partener1.hashCode()+partener2.hashCode());
     }
 
+    public String getPatner( String id){
+        if (getPartener1().getId().equals(id)){
+            return getPartener2().getId();
+        }
+        else if (getPartener2().getId().equals(id)){
+            return getPartener1().getId();
+        }
+        return null;
+    }
+
+
 }

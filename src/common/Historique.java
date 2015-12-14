@@ -1,7 +1,5 @@
 package common;
 
-import util.Utilitaires;
-
 import java.util.Date;
 import java.util.*;
 
@@ -14,6 +12,10 @@ public class Historique  {
 
     public Historique(){
         actionsReal=new ArrayList<ActionReal>();
+    }
+    public Historique(ActionReal act) {
+        actionsReal=new ArrayList<ActionReal>();
+        actionsReal.add(act);
     }
 
     public static Historique getIsntance(){

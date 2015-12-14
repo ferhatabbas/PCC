@@ -1,6 +1,5 @@
 package common;
 
-import util.Utilitaires;
 
 import java.util.ArrayList;
 import java.util.Date;
