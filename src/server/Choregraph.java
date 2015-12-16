@@ -18,9 +18,12 @@ public class Choregraph implements RequestHandler {
         ArrayList<String> requeteBody;
         switch (request.getSubject()){
             case SYNC:
+                System.out.println("demmande de sync");
                 return Server.MESSAGE_SERVICE.receive((String) request.getBody());
 
             case P2P:
+                System.out.println("demande de P2p" + " from " + request.getFrom() + " to " + request.getTo());
+
                 Server.MESSAGE_SERVICE.send(request.getTo(), request);
                 return new Message();
 
@@ -78,6 +81,10 @@ public class Choregraph implements RequestHandler {
                 ArrayList latlng = (ArrayList) request.getBody();
               // TODO Sauvegarder ca et le mettre dans le couple ? User ? il faut que le partenaire puisse recuperer cette position
                 return Tou.run();
+
+            case ECHO_DEBUG:
+                System.out.println("message entrant");
+                return request;
 
 
         }
