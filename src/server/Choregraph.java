@@ -82,11 +82,6 @@ public class Choregraph implements RequestHandler {
               // TODO Sauvegarder ca et le mettre dans le couple ? User ? il faut que le partenaire puisse recuperer cette position
                 return Tou.run();
 
-            case ECHO_DEBUG:
-                System.out.println("message entrant");
-                return request;
-
-
         }
 
         return  null;
