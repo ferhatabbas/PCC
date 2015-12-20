@@ -12,8 +12,8 @@ public class Server {
   public static void main(String[] args) throws Exception {
     //EXECUTOR.execute(new TcpServer(new EchoRequestHandlerFactory()));
     EXECUTOR.execute(new TcpServer(new ChoregraphFactory()));
-    testPeriodicTask();
-    testRestfulClient();
+    //testPeriodicTask();
+    //testRestfulClient();
   }
   
   private static void testPeriodicTask() {

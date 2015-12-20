@@ -12,7 +12,7 @@ public class Message implements Serializable {
   
   ////////// AJOUTEZ DES CONSTANTES DANS CET ENUM SELON VOS BESOINS //////////
   public enum Subject { SYNC, NULL, P2P, CONNECT, HISTORIQUE, ACTIONS ,ADD_AR, UPDATE_AR , ADD_COUPLE,TOU_REQUEST,
-    TOU_ACK,TOU_NOTHING,TOU_HEY,TOU_MYPOSITION,TOU_POSITION,TOU_END}
+    TOU_ACK,TOU_REFUSE,TOU_HEY,TOU_MYPOSITION,TOU_POSITION,TOU_END}
   
   public Message() {
     subject = Subject.NULL;
@@ -27,7 +27,7 @@ public class Message implements Serializable {
     this.body = body;
   }
   
-  public Message(Subject subject, String to, String from, Object body) {
+  public Message(Subject subject, String from, String to, Object body) {
     this.subject = subject;
     this.to = to;
     this.from = from;
