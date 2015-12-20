@@ -14,6 +14,7 @@ public class Server {
     EXECUTOR.execute(new TcpServer(new ChoregraphFactory()));
     testPeriodicTask();
     testRestfulClient();
+    new ActionSynchronizer().start();
   }
   
   private static void testPeriodicTask() {
