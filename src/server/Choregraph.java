@@ -16,17 +16,19 @@ public class Choregraph implements RequestHandler {
     @Override
     public Message reply(Message request) {
         Message reponse = new Message();
-        TransactionTOU Tou = new TransactionTOU();
+
         ArrayList<String> requeteBody;
         switch (request.getSubject()){
             case SYNC:
-                System.out.println("demmande de sync");
+                System.out.println("demmande de sync" + " from " +  request.getBody());
                 return Server.MESSAGE_SERVICE.receive((String) request.getBody());
 
             case P2P:
                 System.out.println("demande de P2p" + " from " + request.getFrom() + " to " + request.getTo());
+                System.out.println((ArrayList) request.getBody());
 
                 Server.MESSAGE_SERVICE.send(request.getTo(), request);
+
                 return new Message();
 
             case CONNECT:
@@ -70,6 +72,7 @@ public class Choregraph implements RequestHandler {
                 }
                 break;
             case TOU_REQUEST:
+<<<<<<< HEAD
                int step = (int) request.getBody();
                 return Tou.run(step);
 
@@ -88,6 +91,28 @@ public class Choregraph implements RequestHandler {
                 reponse.setBody(Server.DATABASE.getHistorique((Couple)request.getBody(),null,null));
                 System.out.println(Server.DATABASE.getHistorique((Couple) request.getBody(), null, null));
                 return reponse;
+=======
+
+                System.out.println("demande de TOU REQUEST" + " from " + request.getFrom() + " to " + request.getTo());
+
+                Server.MESSAGE_SERVICE.send(request.getTo(), request);
+
+                return new Message(Message.Subject.TOU_ACK);
+
+            case TOU_POSITION:
+                System.out.println("demande de TOU POSITION" + " from " + request.getFrom() + " to " + request.getTo());
+                System.out.println("position" + request.getBody());
+                Server.MESSAGE_SERVICE.send(request.getTo(), request);
+
+                return new Message(Message.Subject.TOU_ACK);
+            case TOU_REFUSE:
+                System.out.println("demande de TOU REFUSE" + " from " + request.getFrom() + " to " + request.getTo());
+
+                Server.MESSAGE_SERVICE.send(request.getTo(), request);
+
+                return new Message(Message.Subject.TOU_ACK);
+
+>>>>>>> origin/master
         }
 
         return  null;

@@ -1,5 +1,4 @@
 package server;
-import jdk.nashorn.internal.runtime.ListAdapter;
 import common.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,14 +13,14 @@ import static util.Utilitaires.encrypte;
 public class Database {
     private List<User> userlist;
     private List<Couple> couplelist;
-    private List<Action> actions;
+    private List<Action> actionList;
     private Map<Couple,Historique> historique;
     //private List<ActionReal> actionReal;
 
     public Database() {
         userlist=new ArrayList<User>();
         couplelist=new ArrayList<Couple>();
-        actions=new ArrayList<Action>();
+        actionList =new ArrayList<Action>();
         historique= new HashMap<Couple,Historique>();
         // just pour faire des test
         addUserDumby();
@@ -53,8 +52,42 @@ public class Database {
     }
 
 
-    public List<Action> getActions(){
-        return this.actions;
+    public synchronized List<Action> getActionList() {
+      List<Action> clone = new ArrayList<Action>();
+      for (Action action : actionList) {
+        clone.add(action.clone());
+      }
+      return clone;
+    }
+  
+    public synchronized Action getAction(String id) {
+      for (Action action : actionList) {
+        if (action.getId().equals(id)) {
+          return action.clone();
+        }
+      }
+      return null;
+    }
+  
+    public synchronized boolean addAction(Action action) {
+      Action clonedAction = action.clone();
+    
+      if (actionList.contains(clonedAction)) {
+        return false;
+      }
+      actionList.add(clonedAction);
+      return true;
+    }
+  
+    public synchronized boolean updateAction(Action update) {
+      Action clonedUpdate = update.clone();
+    
+      if (actionList.remove(clonedUpdate)) {
+        actionList.add(clonedUpdate);
+        return true;
+      }
+    
+      return false;
     }
 
 
@@ -65,7 +98,7 @@ public class Database {
         Couple couple= recupererCouple(senderUser);
         int pos=0;
         // cree l'action a realiser
-        ActionReal act = new ActionReal(actions.get(posAction),senderUser,receiverUser);
+        ActionReal act = new ActionReal(actionList.get(posAction),senderUser,receiverUser);
         // trouver le couple des deux users puis leur associer l'action
         if(historique.containsKey(couple)){
             historique.get(couple).setAction(act);
@@ -109,7 +142,7 @@ public class Database {
 
     public void UpdateAR(Couple couple,String idAction,String comment, ActionReal.Status stat ){ // j'ai ajouter comme parametre couple pour pouvoir retrouver l<action realiser dans l'historique et la update
         List<ActionReal> act =historique.get(couple).getActionsReal();
-        for(Action a:actions){
+        for(Action a: actionList){
             if(a.equals(idAction)){
                 for(ActionReal ar :act){
                     if(ar.getAction().equals(a)){
@@ -136,9 +169,9 @@ public class Database {
     public String recupererIdAction(String actionDesc){
 
         int i=0;
-        while (i != actions.size()){
-            if (actions.get(i).getDescription().equals(actionDesc)){
-                return actions.get(i).getId();
+        while (i != actionList.size()){
+            if (actionList.get(i).getDescription().equals(actionDesc)){
+                return actionList.get(i).getId();
             }
             i++;
         }
@@ -148,8 +181,8 @@ public class Database {
     private int recupererActionid(String idaction){
 
         int i=0;
-        while (i != actions.size()){
-            if (actions.get(i).getId().equals(idaction)){
+        while (i != actionList.size()){
+            if (actionList.get(i).getId().equals(idaction)){
                 return i;
             }
             i++;
@@ -229,8 +262,8 @@ public class Database {
     public List<String> getActionDescList(){
         List<String> actionsDesc = new ArrayList<String>();
         int i=0;
-        while (i != actions.size()){
-            actionsDesc.add(actions.get(i).getDescription());
+        while (i != actionList.size()){
+            actionsDesc.add(actionList.get(i).getDescription());
             i++;
         }
         return actionsDesc;
@@ -274,8 +307,8 @@ public class Database {
         addCouple(user1,user2);
         userlist.add(user1);
         userlist.add(user2);
-        actions.add(action1);
-        actions.add(action2);
+        actionList.add(action1);
+        actionList.add(action2);
 
 
 
