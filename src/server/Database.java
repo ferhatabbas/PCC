@@ -132,10 +132,16 @@ public class Database {
 //        }
 //        return act;
 //    }
-    public Historique getHistorique(Couple couple, Date from, Date to) {
-        // creation du calendrier pour l'incrementation de la date
+    public Historique getHistorique(String sender, String receiver){
+        User senderUser= recupererUser(sender);
+        User receiverUser= recupererUser(receiver);
+        Couple couple= recupererCouple(senderUser);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Historique histo = historique.get(couple);
+        Historique histo = new Historique();
+        if(historique.containsKey(couple)){
+            histo = historique.get(couple);
+        }
+
         return histo;
     }
     // ceci est la premiere version du Update je doit changer ma classe historique pour simplifier et factoriser mon code

@@ -61,6 +61,7 @@ public class Choregraph implements RequestHandler {
             //break;
 
             case ADD_AR:
+                System.out.println("debut add_ar");
                 reponse.setSubject(Message.Subject.ADD_AR);
                 requeteBody = (ArrayList<String>) request.getBody();
                 try {
