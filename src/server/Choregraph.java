@@ -70,6 +70,7 @@ public class Choregraph implements RequestHandler {
                 }
                 break;
             case TOU_REQUEST:
+
                 System.out.println("demande de TOU REQUEST" + " from " + request.getFrom() + " to " + request.getTo());
 
                 Server.MESSAGE_SERVICE.send(request.getTo(), request);
@@ -88,12 +89,6 @@ public class Choregraph implements RequestHandler {
                 Server.MESSAGE_SERVICE.send(request.getTo(), request);
 
                 return new Message(Message.Subject.TOU_ACK);
-
-
-
-
-
-
 
         }
 

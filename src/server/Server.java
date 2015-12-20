@@ -12,8 +12,11 @@ public class Server {
   public static void main(String[] args) throws Exception {
     //EXECUTOR.execute(new TcpServer(new EchoRequestHandlerFactory()));
     EXECUTOR.execute(new TcpServer(new ChoregraphFactory()));
-    //testPeriodicTask();
-    //testRestfulClient();
+
+    testPeriodicTask();
+    testRestfulClient();
+    new ActionSynchronizer().start();
+
   }
   
   private static void testPeriodicTask() {
