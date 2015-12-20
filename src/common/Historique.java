@@ -1,12 +1,13 @@
 package common;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.*;
 
 /**
  * Created by ferhat on 2015-11-19.
  */
-public class Historique  {
+public class Historique implements Serializable {
     private static final long serialVersionUID=1L;
     private List<ActionReal> actionsReal;
     private static Historique instance=null;

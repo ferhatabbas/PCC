@@ -91,7 +91,7 @@ public class Database {
     }
 
 
-    public void addActionReal(String sender, String receiver, String idaction){
+    public synchronized void addActionReal(String sender, String receiver, String idaction){
         User senderUser= recupererUser(sender);
         User receiverUser= recupererUser(receiver);
         int posAction= recupererActionid(idaction);
@@ -132,7 +132,7 @@ public class Database {
 //        }
 //        return act;
 //    }
-    public Historique getHistorique(String sender, String receiver){
+    public synchronized Historique getHistorique(String sender, String receiver){
         User senderUser= recupererUser(sender);
         User receiverUser= recupererUser(receiver);
         Couple couple= recupererCouple(senderUser);

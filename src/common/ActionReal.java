@@ -1,6 +1,7 @@
 package common;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,7 +10,8 @@ import java.util.HashMap;
  * Created by ferhat on 2015-11-12.
  */
 
-public class ActionReal {
+public class ActionReal implements Serializable{
+    private static final long serialVersionUID=1L;
     public enum Status { ATTENTE,VALIDER,REFUSER }
     private User evaluateur;
     private User evaluer;
@@ -99,6 +101,10 @@ public class ActionReal {
         return id.hashCode();
     }
 
-
+    public  String toString(){
+        String str = "";
+        str += "       Date: " + date;
+        str += "description: " + action.getDescription() + "\n";
+        return str;
+    }
 }
-
