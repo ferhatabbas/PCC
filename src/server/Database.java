@@ -38,8 +38,8 @@ public class Database {
         this.userlist.add(user2);
         this.userlist.add(user3);
         this.userlist.add(user4);
-        this.couplelist.add(new Couple(user1,user2));
-        this.couplelist.add(new Couple(user3,user4));
+        this.couplelist.add(new Couple(user1, user2));
+        this.couplelist.add(new Couple(user3, user4));
     }
     public boolean connection(String ID,String Pass) {
         boolean result = false;
@@ -77,27 +77,33 @@ public class Database {
 
 
 
-    public List<ActionReal> getHistorique(Couple couple, Date from, Date to) {
+//    public List<ActionReal> getHistorique(Couple couple, Date from, Date to) {
+//        // creation du calendrier pour l'incrementation de la date
+//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//        Date i= null;
+//        try {
+//            i = format.parse(format.format(from));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        Calendar cal = Calendar.getInstance();
+//
+//
+//        List<ActionReal> act = new ArrayList<ActionReal>();
+//        // creation de la liste des Actions associer a l'intervale de Date fournis en parametre
+//        while ( i!=to){
+//            act.add(historique.get(couple).recupAction(i));
+//            cal.setTime(i);
+//            cal.add(Calendar.DATE, 1);
+//            i=cal.getTime();
+//        }
+//        return act;
+//    }
+    public Historique getHistorique(Couple couple, Date from, Date to) {
         // creation du calendrier pour l'incrementation de la date
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date i= null;
-        try {
-            i = format.parse(format.format(from));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar cal = Calendar.getInstance();
-
-
-        List<ActionReal> act = new ArrayList<ActionReal>();
-        // creation de la liste des Actions associer a l'intervale de Date fournis en parametre
-        while ( i!=to){
-            act.add(historique.get(couple).recupAction(i));
-            cal.setTime(i);
-            cal.add(Calendar.DATE, 1);
-            i=cal.getTime();
-        }
-        return act;
+        Historique histo = historique.get(couple);
+        return histo;
     }
     // ceci est la premiere version du Update je doit changer ma classe historique pour simplifier et factoriser mon code
 

@@ -1,10 +1,12 @@
 package server;
 
 import com.sun.xml.bind.v2.TODO;
+import common.Couple;
 import common.Message;
 import common.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -81,7 +83,11 @@ public class Choregraph implements RequestHandler {
                 ArrayList latlng = (ArrayList) request.getBody();
               // TODO Sauvegarder ca et le mettre dans le couple ? User ? il faut que le partenaire puisse recuperer cette position
                 return Tou.run();
-
+            case HISTORIQUE:
+                reponse.setSubject(Message.Subject.HISTORIQUE);
+                reponse.setBody(Server.DATABASE.getHistorique((Couple)request.getBody(),null,null));
+                System.out.println(Server.DATABASE.getHistorique((Couple) request.getBody(), null, null));
+                return reponse;
         }
 
         return  null;
