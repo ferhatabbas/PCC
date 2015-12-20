@@ -103,8 +103,8 @@ public class ActionReal implements Serializable{
 
     public  String toString(){
         String str = "";
-        str += "       Date: " + date;
-        str += "description: " + action.getDescription() + "\n";
+        str += date + "\n";
+        str +=  action.getDescription() + "\n";
         return str;
     }
 }
