@@ -71,28 +71,13 @@ public class Choregraph implements RequestHandler {
                     System.out.println("Connection impossible");
                 }
                 break;
-            case TOU_REQUEST:
-<<<<<<< HEAD
-               int step = (int) request.getBody();
-                return Tou.run(step);
-
-            case TOU_HEY:
-                if(Tou.hey()) //il y a une nouveaute
-                return Tou.run();
-                else
-                    return new Message(Message.Subject.TOU_NOTHING);
-
-            case TOU_MYPOSITION:
-                ArrayList latlng = (ArrayList) request.getBody();
-              // TODO Sauvegarder ca et le mettre dans le couple ? User ? il faut que le partenaire puisse recuperer cette position
-                return Tou.run();
             case HISTORIQUE:
                 reponse.setSubject(Message.Subject.HISTORIQUE);
                 reponse.setBody(Server.DATABASE.getHistorique((Couple)request.getBody(),null,null));
                 System.out.println(Server.DATABASE.getHistorique((Couple) request.getBody(), null, null));
                 return reponse;
-=======
 
+            case TOU_REQUEST:
                 System.out.println("demande de TOU REQUEST" + " from " + request.getFrom() + " to " + request.getTo());
 
                 Server.MESSAGE_SERVICE.send(request.getTo(), request);
@@ -112,7 +97,6 @@ public class Choregraph implements RequestHandler {
 
                 return new Message(Message.Subject.TOU_ACK);
 
->>>>>>> origin/master
         }
 
         return  null;
