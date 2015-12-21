@@ -2,6 +2,7 @@ package common;
 
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class ActionReal implements Serializable{
 
     // For internal use only. This id is convenient for the equals() and
     // the hashCode() implementation.
-    private final String id;
+    public final String id;
 
     public ActionReal(Action action,User evaluateur ,User evaluer ){
         this.evaluateur=evaluateur;
@@ -103,7 +104,7 @@ public class ActionReal implements Serializable{
 
     public  String toString(){
         String str = "";
-        str += date + "\n";
+        str += new SimpleDateFormat("dd-MM-yyyy hh:mm").format(date) + "\n";
         str +=  action.getDescription() + "\n";
         return str;
     }

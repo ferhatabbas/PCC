@@ -1,5 +1,7 @@
 package server;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.*;
 
 public class Server {
@@ -12,7 +14,7 @@ public class Server {
   public static void main(String[] args) throws Exception {
     EXECUTOR.execute(new TcpServer(new ChoregraphFactory()));
     new ActionSynchronizer().start();
-
+    System.out.println(new SimpleDateFormat("dd-MM-yyyy hh:mm").format(new Date()));
   }
   
   private static void testPeriodicTask() {

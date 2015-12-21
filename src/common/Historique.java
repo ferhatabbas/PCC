@@ -41,4 +41,12 @@ public class Historique implements Serializable {
     }
     public List<ActionReal> getActionsReal(){return actionsReal;}
 
+    public ActionReal getActionR(String id){
+        for (ActionReal action : this.actionsReal) {
+            if ((action.id).equals(id)){
+                return  action;
+            }
+        }
+        return null;
+    }
 }

@@ -104,39 +104,13 @@ public class Database {
             historique.get(couple).setAction(act);
         }
         else{
-            historique.put(couple,new Historique(act));
+            historique.put(couple, new Historique(act));
         }
     }
-
-
-
-//    public List<ActionReal> getHistorique(Couple couple, Date from, Date to) {
-//        // creation du calendrier pour l'incrementation de la date
-//        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-//        Date i= null;
-//        try {
-//            i = format.parse(format.format(from));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        Calendar cal = Calendar.getInstance();
-//
-//
-//        List<ActionReal> act = new ArrayList<ActionReal>();
-//        // creation de la liste des Actions associer a l'intervale de Date fournis en parametre
-//        while ( i!=to){
-//            act.add(historique.get(couple).recupAction(i));
-//            cal.setTime(i);
-//            cal.add(Calendar.DATE, 1);
-//            i=cal.getTime();
-//        }
-//        return act;
-//    }
     public synchronized Historique getHistorique(String sender, String receiver){
         User senderUser= recupererUser(sender);
         User receiverUser= recupererUser(receiver);
         Couple couple= recupererCouple(senderUser);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Historique histo = new Historique();
         if(historique.containsKey(couple)){
             histo = historique.get(couple);
@@ -144,34 +118,29 @@ public class Database {
 
         return histo;
     }
-    // ceci est la premiere version du Update je doit changer ma classe historique pour simplifier et factoriser mon code
 
-    public void UpdateAR(Couple couple,String idAction,String comment, ActionReal.Status stat ){ // j'ai ajouter comme parametre couple pour pouvoir retrouver l<action realiser dans l'historique et la update
-        List<ActionReal> act =historique.get(couple).getActionsReal();
-        for(Action a: actionList){
-            if(a.equals(idAction)){
-                for(ActionReal ar :act){
-                    if(ar.getAction().equals(a)){
-                        if(stat == ActionReal.Status.VALIDER){
-                            ar.setStatus(stat);
-                            if(couple.getPartener1().equals(ar.getEvaluer())){
-                                couple.SetPCpartener1(ar.getAction().getValue());
-                                ar.setCommentaire(comment);
-                            }else if(couple.getPartener2().equals(ar.getEvaluer())){
-                                couple.SetPCpartener2(ar.getAction().getValue());
-                                ar.setCommentaire(comment);
-                            }
-                        }
-
-                    }
-                }
-
-            }
+    public synchronized boolean updateAR(String id, String comment,String status, String sender, String receiver){
+        User senderUser= recupererUser(sender);
+        User receiverUser= recupererUser(receiver);
+        Couple couple= recupererCouple(senderUser);
+        Historique histo = new Historique();
+        if(historique.containsKey(couple)){
+            histo = historique.get(couple);
         }
-
-
-
+        ActionReal act = histo.getActionR(id);
+        if (act!= null){
+            act.setCommentaire(comment);
+            if(status.equals("VALIDER")){
+                act.setStatus(ActionReal.Status.VALIDER);
+            }
+            else {
+                act.setStatus(ActionReal.Status.REFUSER);
+            }
+            return  true;
+        }
+        return false;
     }
+
     public String recupererIdAction(String actionDesc){
 
         int i=0;
