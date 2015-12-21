@@ -70,14 +70,20 @@ public class User implements Serializable {
     }
 
 
-    public boolean equals (Object o){
-        boolean result = false;
-        if(o instanceof User){
-            if(this.id == ((User) o).id) result=true;
+    @Override
+    public boolean equals(Object object) {
+        if (object == this) {
+            return true;
         }
 
-        return result;
+        if (!(object instanceof User)) {
+            return false;
+        }
+
+        User user = (User) object;
+        return user.id.equals(id);
     }
+
     public int hashCode(){
     return id.hashCode();
     }

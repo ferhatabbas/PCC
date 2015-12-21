@@ -106,6 +106,10 @@ public class Choregraph implements RequestHandler {
 
                 return new Message(Message.Subject.TOU_ACK);
 
+            case GET_COUPLE:
+                Couple oldCouple = (Couple) request.getBody();
+                Couple newCouple = Server.DATABASE.getCouple(oldCouple);
+                return new Message(Message.Subject.GET_COUPLE, newCouple);
         }
 
         return  null;

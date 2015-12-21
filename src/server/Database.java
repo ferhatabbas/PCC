@@ -300,4 +300,15 @@ public class Database {
 
     }
 
+    public Couple getCouple(Couple oldCouple) {
+        Couple newCouple = null;
+
+        for (Couple couple : couplelist) {
+            if (couple.equals(oldCouple)) {
+                newCouple = couple;
+            }
+        }
+
+        return newCouple;
+    }
 }
