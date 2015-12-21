@@ -49,4 +49,12 @@ public class Historique implements Serializable {
         }
         return null;
     }
+
+    public  List<String> toStringList(){
+        List<String> strs = new ArrayList<String>();
+        for(ActionReal act :actionsReal) {
+            strs.add(act.toString());
+        }
+        return strs;
+    }
 }
