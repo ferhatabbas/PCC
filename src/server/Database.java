@@ -136,6 +136,12 @@ public class Database {
             act.setCommentaire(comment);
             if(status.equals("VALIDER")){
                 act.setStatus(ActionReal.Status.VALIDER);
+                if(receiver.equals(couple.getPartener1())){
+                    couple.SetPCpartener1(act.getAction().getValue());
+                }
+                else{
+                    couple.SetPCpartener2(act.getAction().getValue());
+                }
             }
             else {
                 act.setStatus(ActionReal.Status.REFUSER);
