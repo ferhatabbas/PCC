@@ -105,14 +105,18 @@ public class ActionReal implements Serializable{
     public  String toString(){
         String str = "";
         str += new SimpleDateFormat("dd-MM-yyyy hh:mm").format(date) + "\n";
+        str +=  "                    " + action.getDescription() + "\n";
+        str +=  "                    " + getEvaluateur().getId() + "\n";
+        str +=  "                    " + getEvaluer().getId() + "\n";
+
         if(status.equals(Status.VALIDER)){
-            str +=  action.getDescription() +"     VALIDER"+ "\n";
+            str += "                    " + "     VALIDER"+ "\n";
         }
         else if(status.equals(Status.ATTENTE)){
-            str +=  action.getDescription() +"     EN ATTENTE"+ "\n";
+            str += "                    " + "     EN ATTENTE"+ "\n";
         }
         else if(status.equals(Status.REFUSER)){
-            str +=  action.getDescription() +"     REFUSER"+ "\n";
+            str += "                    " + "     REFUSER"+ "\n";
         }
         return str;
     }

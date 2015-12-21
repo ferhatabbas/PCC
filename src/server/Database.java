@@ -91,7 +91,8 @@ public class Database {
     }
 
 
-    public synchronized void addActionReal(String sender, String receiver, String idaction){
+    public synchronized boolean addActionReal(String sender, String receiver, String idaction){
+        boolean res = false;
         User senderUser= recupererUser(sender);
         User receiverUser= recupererUser(receiver);
         int posAction= recupererActionid(idaction);
@@ -102,10 +103,13 @@ public class Database {
         // trouver le couple des deux users puis leur associer l'action
         if(historique.containsKey(couple)){
             historique.get(couple).setAction(act);
+            res = true;
         }
         else{
             historique.put(couple, new Historique(act));
+            res = true;
         }
+        return res;
     }
     public synchronized Historique getHistorique(String sender, String receiver){
         User senderUser= recupererUser(sender);

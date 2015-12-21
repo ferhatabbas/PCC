@@ -65,7 +65,8 @@ public class Choregraph implements RequestHandler {
                 reponse.setSubject(Message.Subject.ADD_AR);
                 requeteBody = (ArrayList<String>) request.getBody();
                 try {
-                    Server.DATABASE.addActionReal(requeteBody.get(0), requeteBody.get(1), Server.DATABASE.recupererIdAction(requeteBody.get(2)));
+                    boolean res = Server.DATABASE.addActionReal(requeteBody.get(0), requeteBody.get(1), Server.DATABASE.recupererIdAction(requeteBody.get(2)));
+                    reponse.setBody(res);
                     return reponse;
                 }
                 catch  (Exception e){
